@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audi Museum Exponate – Technisches Gesamtwiki</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-logo">A</div>
+      <div class="brand-title">
+        <h1>Audi Museum Exponate</h1>
+        <span>Technisches Gesamtwiki & Systemdokumentation</span>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input type="text" id="wikiSearch" placeholder="Suche nach Befehlen, Ports, Konfigurationen, Repositories...">
+    </div>
+
+    <div class="header-status">
+      <div class="status-badge">
+        <div class="status-pulse"></div>
+        Systeme Operativ
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="nav-group">
+        <div class="nav-title">Allgemein</div>
+        <a class="nav-item active" data-target="sec-overview">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          System-Übersicht
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Exponats-Repositories</div>
+        <a class="nav-item" data-target="sec-paternoster">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          Paternoster
+        </a>
+        <a class="nav-item" data-target="sec-motoren">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          Motoren-Terminals
+        </a>
+        <a class="nav-item" data-target="sec-horch">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          Horch 8 Fiedler
+        </a>
+        <a class="nav-item" data-target="sec-audi100">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          Audi 100 Geheimprojekt
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Betrieb & Wartung</div>
+        <a class="nav-item" data-target="sec-kiosk">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Weston Kiosk Setup
+        </a>
+        <a class="nav-item" data-target="sec-commands">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          Command Center
+        </a>
+        <a class="nav-item" data-target="sec-troubleshooting">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Troubleshooting
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+
+      <!-- SECTION: System Overview -->
+      <section id="sec-overview" class="wiki-section active">
+        <div class="section-header">
+          <h2 class="section-title">🏛️ Audi Museum Exponate – System-Übersicht</h2>
+          <p class="section-desc">Zentraler Leitfaden für Betrieb, Architektur und Handhabung der digitalen Ausstellungsmedien.</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Paternoster</span>
+              <span class="badge badge-red">Vue 3 + Strapi</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Interaktive Kiosk-Software mit Live-MQTT Hardware-Synchronisation zum Paternoster-Aufzug.
+            </p>
+            <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-cyan);">
+              Port: 1337 (CMS) | MQTT: ws://
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Motoren-Terminals</span>
+              <span class="badge badge-cyan">Docker Standalone</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              4 Touchscreen-Exponate (3.3L V8, 2.5L 5-Zyl, 2.2L 5-Zyl, Wankel) mit eingebetteten 4K-Videos.
+            </p>
+            <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-cyan);">
+              Ports: 8081 - 8084
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Horch 8 Fiedler</span>
+              <span class="badge badge-amber">Electron v28</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Historisches V8-Motorenterminal mit Webpack & GPU-accelerated Wayland Pass-Through.
+            </p>
+            <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-cyan);">
+              Native .exe / Linux Docker
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Audi 100</span>
+              <span class="badge badge-green">In Vorbereitung</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Geheimprojekt & Entwicklungs-Prototypen Ausstellungsmodul.
+            </p>
+            <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-cyan);">
+              Upcoming Module
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+          <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text-main);">📡 Repository & Port-Matrix</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Repository</th>
+                  <th>Technologie</th>
+                  <th>Container / Executable</th>
+                  <th>Standard Port</th>
+                  <th>Konfigurationsdatei</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>`oaktown42dev/paternoster`</strong></td>
+                  <td>Vue 3, Strapi v5, MQTT</td>
+                  <td>`paternoster-app`, `paternoster-cms`</td>
+                  <td>`1337` (CMS) / `80` (App)</td>
+                  <td>`app-vue/src/settings.json`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/museum_3-3Motor`</strong></td>
+                  <td>Vue 3, Vite, Docker</td>
+                  <td>`museum-3-3` (V8 TDI / 3.7L)</td>
+                  <td>`8081`</td>
+                  <td>`deployments/3.3 Liter/content.json`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/museum_3-3Motor`</strong></td>
+                  <td>Vue 3, Vite, Docker</td>
+                  <td>`museum-2-2` (2.2L 5-Zyl Turbo)</td>
+                  <td>`8082`</td>
+                  <td>`deployments/2.2 Liter/content.json`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/museum_3-3Motor`</strong></td>
+                  <td>Vue 3, Vite, Docker</td>
+                  <td>`museum-2-5` (2.5L 5-Zyl TDI)</td>
+                  <td>`8083`</td>
+                  <td>`deployments/2.5 Liter/content.json`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/museum_3-3Motor`</strong></td>
+                  <td>Vue 3, Vite, Docker</td>
+                  <td>`museum-wankel` (NSU Ro 80)</td>
+                  <td>`8084`</td>
+                  <td>`deployments/Wankel/content.json`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/horchv8`</strong></td>
+                  <td>Electron v28, Webpack</td>
+                  <td>`audi-motorenterminal`</td>
+                  <td>Native GUI / Wayland Display</td>
+                  <td>`Horch_8_Fiedler/app.config`</td>
+                </tr>
+                <tr>
+                  <td><strong>`oaktown42dev/audi100_geheimprojekt`</strong></td>
+                  <td>Kiosk Placeholder</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Paternoster -->
+      <section id="sec-paternoster" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">🎢 Exponat: Paternoster</h2>
+          <p class="section-desc">Kiosk-Software für interaktive Paternoster-Exponate mit Live-MQTT Sensordaten.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 0.75rem;">🏗️ Komponenten-Architektur</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              <strong>1. Frontend (`app-vue`)</strong>: Visualisiert rotierende Fahrzeugkarossen im Paternoster-Umlaufaufzug. Es verarbeitet MQTT-Nachrichten live über WebSocket.
+              <br><br>
+              <strong>2. Backend / CMS (`cms-v5`)</strong>: Strapi v5 Headless-CMS mit SQLite-Datenbank (`.tmp/data.db`) für mehrsprachige Texte und Medien-Uploads.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 0.75rem;">⏳ Smart-Sync & Inaktivitäts-Timer</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              - <strong>Auto-Reset (120 Sekunden)</strong>: Springt bei Inaktivität auf die Standardansicht und die aktuell physisch sichtbare Karosse zurück.
+              <br>
+              - <strong>Smart-Sync</strong>: Solange ein Besucher liest oder wischt, werden MQTT-Auto-Wechsel geparkt, um die Interaktion nicht zu unterbrechen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="interactive-tool">
+          <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">🧮 Interaktiver Paternoster Offset & Floor Rechner</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Testen Sie, wie sich `StationFloor` und `carOffset` auf die Auto-ID an verschiedenen Kiosks auswirken.</p>
+          
+          <div class="tool-row">
+            <div class="tool-field">
+              <label>Kiosk Stockwerk (StationFloor):</label>
+              <input type="number" id="calcFloor" value="2">
+            </div>
+            <div class="tool-field">
+              <label>Etagenversatz (carOffset):</label>
+              <input type="number" id="calcOffset" value="2">
+            </div>
+            <div class="tool-field">
+              <label>Paternoster Sensor Auto ID:</label>
+              <input type="number" id="calcSensorCar" value="0">
+            </div>
+            <div class="tool-field">
+              <label>Gesamtzahl Karossen:</label>
+              <input type="number" id="calcTotalCars" value="16">
+            </div>
+          </div>
+
+          <div class="tool-output" id="calcOutput">Berechne...</div>
+
+          <div style="margin-top: 1rem;">
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.3rem;">Generierte app-vue/src/settings.json:</div>
+            <div class="code-block" style="margin:0;">
+              <div class="code-content" id="calcJsonOutput"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">🔌 MQTT Offline-Diagnose (`ws-test.html`)</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.5rem 0 1rem 0;">
+            Im Repository liegt das eigenständige Test-Tool <code>ws-test.html</code>. Damit kann der Broker und Topic <code>paternoster/status</code> ohne physisches Paternoster-Signal auf dem Kiosk-PC simuliert werden.
+          </p>
+          <div class="code-block">
+            <div class="code-header">
+              <span>MQTT Test-Dashboard öffnen</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content">double-click ws-test.html in browser -> Connect -> Send Payload '{"carId": 3}' to topic paternoster/status</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Motoren Terminals -->
+      <section id="sec-motoren" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">⚙️ Exponat: Motoren-Terminals (3.3L, 2.5L, 2.2L, Wankel)</h2>
+          <p class="section-desc">Stand-Alone Kiosk-Anwendungen für 4 verschiedene Motoren-Modelle des Audi Museums.</p>
+        </div>
+
+        <!-- Interactive Engine Generator -->
+        <div class="interactive-tool">
+          <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">⚡ Docker Command Generator für Offline-Updates</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Generieren Sie den exakten `docker run` Befehl für das gewünschte Motoren-Exponat.</p>
+
+          <div class="tool-row">
+            <div class="tool-field">
+              <label>Motoren-Modell wählen:</label>
+              <select id="genEngine">
+                <option value="3-3">3.3 Liter V8 TDI / 3.7L Motor (Standard: 8081)</option>
+                <option value="2-2">2.2 Liter 5-Zylinder Turbo (Standard: 8082)</option>
+                <option value="2-5">2.5 Liter 5-Zylinder TDI (Standard: 8083)</option>
+                <option value="wankel">NSU Ro 80 Wankelmotor (Standard: 8084)</option>
+              </select>
+            </div>
+            <div class="tool-field">
+              <label>Ziel-Port auf Kiosk PC:</label>
+              <input type="number" id="genPort" value="8081">
+            </div>
+          </div>
+
+          <div class="code-block" style="margin-top: 1rem;">
+            <div class="code-header">
+              <span>Generiertes Docker Startkommando</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content" id="genCmdOutput"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">📦 USB-Stick Offline-Build Workflow</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Da die Video-Assets eingebettet sind, wird kein GitHub Actions Build genutzt. Das PowerShell-Skript exportiert alle 4 Docker-Images direkt als <code>.tar</code> für USB-Sticks.
+          </p>
+          <div class="code-block">
+            <div class="code-header">
+              <span>PowerShell (Arbeits-PC)</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content"># In Verzeichnis vue-app ausführen:
+.\build_all_images.ps1
+
+# Generiert:
+# museum_3-3motor.tar, museum_2-5motor.tar, museum_2-2motor.tar, museum_wankel.tar</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Horch 8 -->
+      <section id="sec-horch" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">🏎️ Exponat: Horch 8 Fiedler</h2>
+          <p class="section-desc">Electron & Webpack Kiosk-Terminal für historische Horch V8-Motoren.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">💻 Windows Native packaging</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Paketiert die Anwendung als native `.exe` unter `./dist/`.
+            </p>
+            <div class="code-block">
+              <div class="code-header">
+                <span>NPM Command</span>
+                <button class="btn-copy">Kopieren</button>
+              </div>
+              <div class="code-content">cd audi.motorenterminal.fiedler-win32-x64__HD/audi.motorenterminal.fiedler-win32-x64/resources/app
+npm install
+npm run build_webpack
+npm run package</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">🐳 Linux Docker Kiosk mit GPU</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Reicht `/dev/dri` (Grafikkarte) und Wayland Socket in den Container durch.
+            </p>
+            <div class="code-block">
+              <div class="code-header">
+                <span>Docker Compose</span>
+                <button class="btn-copy">Kopieren</button>
+              </div>
+              <div class="code-content">docker compose up -d --build</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Audi 100 -->
+      <section id="sec-audi100" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">🕵️ Exponat: Audi 100 Geheimprojekt</h2>
+          <p class="section-desc">Vorschau & Integrations-Leitfaden für das nächste Ausstellungsmodul.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="color: var(--accent-green);">📌 Status: In Vorbereitung</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
+            Das Repository <code>audi100_geheimprojekt</code> dient als Basis-Platzhalter für die digitale Präsentation historischer Audi 100 Entwicklungsakten und Erprobungsfahrzeuge. 
+            <br><br>
+            Das Modul wird nach Fertigstellung nahtlos in die Weston-Kiosk Infrastruktur eingebunden und auf den entsprechenden Touchscreen-Stationen ausgerollt.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION: Weston Kiosk Setup -->
+      <section id="sec-kiosk" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">💻 Betrieb & Weston Kiosk-Setup (Ubuntu Linux)</h2>
+          <p class="section-desc">Komplette Anleitung zum Einrichten eines nahtlosen Wayland/Weston Kiosk-PCs ohne sichtbaren Mauszeiger.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">1. Chromium Kiosk Startskript (`/usr/local/bin/kiosk-start.sh`)</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span>Bash Skript</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content">#!/bin/bash
+source /etc/default/kiosk 2>/dev/null
+URL=${KIOSK_URL:-"http://localhost:8081"}
+
+timeout=120; elapsed=0
+until curl -sf "$URL" > /dev/null 2>&1; do
+  sleep 2; elapsed=$((elapsed+2))
+  if [ "$elapsed" -ge "$timeout" ]; then exit 1; fi
+done
+
+exec chromium-browser \
+  --enable-features=UseOzonePlatform \
+  --ozone-platform=wayland \
+  --kiosk \
+  --incognito \
+  --no-first-run \
+  --disable-infobars \
+  --disable-translate \
+  --disable-features=Translate,TranslateUI \
+  "$URL"</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+          <h3 class="card-title">2. Chromium Translation Banner erzwingend deaktivieren</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span>Ubuntu Policy Setup</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content">sudo mkdir -p /etc/chromium-browser/policies/managed/
+sudo mkdir -p /etc/chromium/policies/managed/
+echo '{ "TranslateEnabled": false }' | sudo tee /etc/chromium-browser/policies/managed/disable_translate.json
+echo '{ "TranslateEnabled": false }' | sudo tee /etc/chromium/policies/managed/disable_translate.json</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Command Center -->
+      <section id="sec-commands" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">⚡ Command Center & Cheat Sheet</h2>
+          <p class="section-desc">Die wichtigsten Befehle für Wartung, SSH-Image cloning und Strapi-Backups.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">💾 1:1 SSH System-Cloning (DD + SSH)</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span>Git Bash / WSL (Entwicklungs-PC)</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content"># 1. Quell-PC Image sichern:
+ssh ubuntu@&lt;quell-ip&gt; "sudo dd if=/dev/nvme0n1 bs=4M | gzip -c" > paternoster-kiosk-backup.img.gz
+
+# 2. Auf neuen Ziel-PC aufspielen:
+gunzip -c paternoster-kiosk-backup.img.gz | ssh ubuntu@&lt;ziel-ip&gt; "sudo dd of=/dev/nvme0n1 bs=4M status=progress"</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+          <h3 class="card-title">📦 Strapi Content Export / Import</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span>Docker Commands</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content"># Export aus laufendem Strapi Container:
+docker exec -it paternoster-cms npm run strapi export -- --no-encrypt --file /opt/app/database/backup
+
+# Import in neuen Container:
+docker exec -it paternoster-cms npm run strapi import -- --force --file /opt/app/backup.tar.gz</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Troubleshooting -->
+      <section id="sec-troubleshooting" class="wiki-section">
+        <div class="section-header">
+          <h2 class="section-title">🛠️ Troubleshooting Matrix</h2>
+          <p class="section-desc">Häufige Fehlerbilder und deren direkte Lösung auf dem Kiosk-PC.</p>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptom / Problem</th>
+                <th>Mögliche Ursache</th>
+                <th>Lösungsschritte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Kiosk stellt alte CMS-IP dar</strong></td>
+                <td>`databaseIP` in `settings.json` editiert, aber Vue-App nicht neu kompiliert.</td>
+                <td>Vue-Image neu bauen (`docker compose build app-vue`), da die IP beim Build fest in das Frontend eingebrannt wird.</td>
+              </tr>
+              <tr>
+                <td><strong>MQTT-Verbindung schlägt fehl</strong></td>
+                <td>Browser blockiert reine TCP (`mqtt://`) Protokolle.</td>
+                <td>Mosquitto auf WebSockets umstellen und `mqttBrokerUrl` in `settings.json` mit `ws://` konfigurieren (z.B. `ws://10.1.1.90:9001`).</td>
+              </tr>
+              <tr>
+                <td><strong>Festplatte nach Docker-Update voll</strong></td>
+                <td>Unbenutzte Docker Container und Images akkumulieren sich.</td>
+                <td>Vor `docker load` immer `docker rm -f <name>` und `docker system prune -a -f` ausführen.</td>
+              </tr>
+              <tr>
+                <td><strong>Chromium zeigt Übersetzungssprache an</strong></td>
+                <td>Chromium ignoriert CLI Parameter `--disable-translate`.</td>
+                <td>Managed JSON Policy unter `/etc/chromium/policies/managed/disable_translate.json` mit `"TranslateEnabled": false` anlegen.</td>
+              </tr>
+              <tr>
+                <td><strong>Horch 8 Video ruckelt</strong></td>
+                <td>Fehlende Hardware-GPU Acceleration im Docker Container.</td>
+                <td>Gerät `/dev/dri` und Wayland-Socket im Container einbinden.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

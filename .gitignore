@@ -1,0 +1,12 @@
+# Sub-repositories (cloned locally for reference)
+/paternoster/
+/museum_3-3Motor/
+/horchv8/
+/audi100_geheimprojekt/
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
