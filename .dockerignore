@@ -1,0 +1,9 @@
+.git
+.gitignore
+.dockerignore
+paternoster/
+museum_3-3Motor/
+horchv8/
+audi100_geheimprojekt/
+*.tar
+*.gz

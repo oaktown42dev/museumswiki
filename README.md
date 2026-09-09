@@ -6,12 +6,21 @@ Zentrales Repository für das technische Wiki der digitalen Ausstellungsstücke 
 
 - **[`WIKI.md`](./WIKI.md)**: Vollständige technische Dokumentation in Markdown (Systemarchitektur, Handling, Kiosk-Setup, Command Center & Troubleshooting).
 - **[`index.html`](./index.html)**: Interaktive Web-Wiki Benutzeroberfläche (Dark Mode, Live-Suche, Paternoster Offset-Rechner & Docker Command Generator).
+- **[`Dockerfile`](./Dockerfile)** & **[`docker-compose.yml`](./docker-compose.yml)**: Leichtgewichtiger Nginx Docker Container für den Ausstellungsbetrieb.
 - **[`styles.css`](./styles.css)** & **[`app.js`](./app.js)**: Design-System und interaktive Skripte für die Wiki Web-App.
 
-## 🚀 Live Web-Wiki Vorschau
-Öffne einfach `index.html` in einem beliebigen Browser oder starte einen lokalen Webserver:
+## 🐳 Docker Deployment (Empfohlen)
+
+### 1. Ausführung via Docker Compose
 ```bash
-npx serve .
+docker compose up -d --build
+```
+Das Wiki ist anschließend erreichbar unter: `http://localhost:8080`
+
+### 2. Ausführung via Pure Docker CLI
+```bash
+docker build -t museumswiki:latest .
+docker run -d --name museumswiki -p 8080:80 --restart unless-stopped museumswiki:latest
 ```
 
 ## 🚗 Dokumentierte Exponat-Repositories
