@@ -1,0 +1,28 @@
+name: Build Offline Docker Tar Artifact
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image & Export Tar
+        run: |
+          docker build -t museumswiki:latest .
+          docker save museumswiki:latest | gzip > museumswiki.tar.gz
+
+      - name: Upload Tar Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: museumswiki.tar.gz
+          path: museumswiki.tar.gz
+          retention-days: 90

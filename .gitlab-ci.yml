@@ -1,0 +1,24 @@
+# GitLab CI/CD Pipeline - Automatic Offline Docker Tar Build
+image: docker:24.0.7
+
+services:
+  - docker:24.0.7-dind
+
+variables:
+  DOCKER_TLS_CERTDIR: "/docker"
+
+stages:
+  - build
+
+build_offline_tar:
+  stage: build
+  script:
+    - echo "Building Docker image for museumswiki..."
+    - docker build -t museumswiki:latest .
+    - echo "Compressing image to museumswiki.tar.gz..."
+    - docker save museumswiki:latest | gzip > museumswiki.tar.gz
+  artifacts:
+    name: "museumswiki-offline-$CI_COMMIT_SHORT_SHA"
+    paths:
+      - museumswiki.tar.gz
+    expire_in: 90 days
