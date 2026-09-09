@@ -22,7 +22,7 @@
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
       </svg>
-      <input type="text" id="wikiSearch" placeholder="Suche nach Befehlen, Ports, Konfigurationen, Repositories...">
+      <input type="text" id="wikiSearch" placeholder="Suche nach Befehlen, Ports, Strapi, Konfigurationen...">
     </div>
 
     <div class="header-status">
@@ -48,7 +48,7 @@
         <div class="nav-title">Exponats-Repositories</div>
         <a class="nav-item" data-target="sec-paternoster">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-          Paternoster
+          Paternoster & Strapi
         </a>
         <a class="nav-item" data-target="sec-motoren">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -95,10 +95,10 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title">Paternoster</span>
-              <span class="badge badge-red">Vue 3 + Strapi</span>
+              <span class="badge badge-red">Vue 3 + Strapi v5</span>
             </div>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-              Interaktive Kiosk-Software mit Live-MQTT Hardware-Synchronisation zum Paternoster-Aufzug.
+              Interaktive Kiosk-Software mit Live-MQTT Hardware-Synchronisation zum Paternoster-Aufzug & Headless CMS.
             </p>
             <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-cyan);">
               Port: 1337 (CMS) | MQTT: ws://
@@ -217,17 +217,17 @@
       <!-- SECTION: Paternoster -->
       <section id="sec-paternoster" class="wiki-section">
         <div class="section-header">
-          <h2 class="section-title">🎢 Exponat: Paternoster</h2>
-          <p class="section-desc">Kiosk-Software für interaktive Paternoster-Exponate mit Live-MQTT Sensordaten.</p>
+          <h2 class="section-title">🎢 Exponat: Paternoster & Headless Strapi v5 CMS</h2>
+          <p class="section-desc">Kiosk-Software mit Live-MQTT Hardware-Synchronisation und Strapi Content-Backend.</p>
         </div>
 
         <div class="grid-2">
           <div class="card">
-            <h3 class="card-title" style="margin-bottom: 0.75rem;">🏗️ Komponenten-Architektur</h3>
+            <h3 class="card-title" style="margin-bottom: 0.75rem;">🏗️ Entkoppelte 2-Komponenten Architektur</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted);">
               <strong>1. Frontend (`app-vue`)</strong>: Visualisiert rotierende Fahrzeugkarossen im Paternoster-Umlaufaufzug. Es verarbeitet MQTT-Nachrichten live über WebSocket.
               <br><br>
-              <strong>2. Backend / CMS (`cms-v5`)</strong>: Strapi v5 Headless-CMS mit SQLite-Datenbank (`.tmp/data.db`) für mehrsprachige Texte und Medien-Uploads.
+              <strong>2. Backend / CMS (`cms-v5`)</strong>: Strapi v5 Headless-CMS mit SQLite-Datenbank (`.tmp/data.db`) für mehrsprachige Texte, Bilder, Galerien und Spezifikationen.
             </p>
           </div>
 
@@ -241,10 +241,114 @@
           </div>
         </div>
 
+        <!-- NEW DEEP DIVE: Strapi v5 Explanation -->
+        <div class="card" style="margin-bottom: 2rem; border-color: var(--accent-red-glow);">
+          <div class="card-header">
+            <span class="card-title" style="color: var(--text-main); font-size: 1.2rem;">📦 Strapi v5 Headless CMS – Aufbau & Funktionalität</span>
+            <span class="badge badge-red">Strapi v5 Core</span>
+          </div>
+
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Strapi ist das <strong>Headless Content Management System</strong> des Paternoster-Exponats. Es verwaltet alle Ausstellungsinhalte zentral. Das Admin-Dashboard ist unter <code>http://&lt;CMS-IP&gt;:1337/admin</code> erreichbar.
+          </p>
+
+          <h4 style="color: var(--accent-cyan); font-size: 1rem; margin-bottom: 0.5rem;">📐 1. Datenmodell (`CollectionType: Car`)</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            Jedes Fahrzeug im Paternoster ist als Instanz in der Collection <code>Car</code> angelegt:
+          </p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feldname</th>
+                  <th>Typ</th>
+                  <th>i18n (Sprachen)</th>
+                  <th>Funktion / Beschreibung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>`Name`</strong></td>
+                  <td>String</td>
+                  <td>Ja (DE/EN)</td>
+                  <td>Fahrzeugbezeichnung (z. B. "Audi 100 Coupé S")</td>
+                </tr>
+                <tr>
+                  <td><strong>`year`</strong></td>
+                  <td>Integer</td>
+                  <td>Nein</td>
+                  <td>Baujahr des Fahrzeugs (z. B. 1970)</td>
+                </tr>
+                <tr>
+                  <td><strong>`subline`</strong></td>
+                  <td>String</td>
+                  <td>Ja (DE/EN)</td>
+                  <td>Kurztitel / Unterzeile für die Kiosk-Kopfzeile</td>
+                </tr>
+                <tr>
+                  <td><strong>`Stellplatz`</strong></td>
+                  <td>Enum (`S01`–`S14`)</td>
+                  <td>Nein</td>
+                  <td><strong>Hardware-Stellplatz</strong>: Gondel-Zuordnung (Paternoster Position 1 bis 14)</td>
+                </tr>
+                <tr>
+                  <td><strong>`text`</strong></td>
+                  <td>Long Text</td>
+                  <td>Ja (DE/EN)</td>
+                  <td>Ausführliche Historie und Beschreibung des Exponats</td>
+                </tr>
+                <tr>
+                  <td><strong>`thumbnail`</strong></td>
+                  <td>Media (Single)</td>
+                  <td>Ja</td>
+                  <td>Vorschaubild im Kiosk-Karussell</td>
+                </tr>
+                <tr>
+                  <td><strong>`bigCar`</strong></td>
+                  <td>Media (Single)</td>
+                  <td>Ja</td>
+                  <td>Freigestelltes, hochauflösendes Fahrzeugbild für die Hauptansicht</td>
+                </tr>
+                <tr>
+                  <td><strong>`gallery`</strong></td>
+                  <td>Media (Multi)</td>
+                  <td>Ja</td>
+                  <td>Bildergalerie mit historischen Aufnahmen</td>
+                </tr>
+                <tr>
+                  <td><strong>`videos`</strong></td>
+                  <td>Media (Multi)</td>
+                  <td>Ja</td>
+                  <td>Historische Video-Clips und Erprobungsfilme</td>
+                </tr>
+                <tr>
+                  <td><strong>`Datatable`</strong></td>
+                  <td>Dynamic Zone (`table.value`)</td>
+                  <td>Ja</td>
+                  <td>Flexible technische Datentabelle (PS, Hubraum, Höchstgeschwindigkeit, Stückzahl)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="color: var(--accent-cyan); font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem;">🔌 2. REST-API für das Vue 3 Kiosk-Frontend</h4>
+          <div class="code-block">
+            <div class="code-header">
+              <span>HTTP REST API Request</span>
+              <button class="btn-copy">Kopieren</button>
+            </div>
+            <div class="code-content">GET http://127.0.0.1:1337/api/cars?populate=*&locale=de</div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Durch den Parameter <code>populate=*</code> liefert Strapi das vollständige JSON-Paket inkl. aller verknüpften Medien-URLs, Übersetzungen und technischen Daten direkt an das Vue-Frontend.
+          </p>
+        </div>
+
         <!-- Interactive Calculator -->
         <div class="interactive-tool">
           <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">🧮 Interaktiver Paternoster Offset & Floor Rechner</h3>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Testen Sie, wie sich `StationFloor` und `carOffset` auf die Auto-ID an verschiedenen Kiosks auswirken.</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Testen Sie, wie sich `StationFloor` und `carOffset` auf die Stellplatz-Zuordnung (`S01`–`S14`) an verschiedenen Kiosks auswirken.</p>
           
           <div class="tool-row">
             <div class="tool-field">
@@ -261,7 +365,7 @@
             </div>
             <div class="tool-field">
               <label>Gesamtzahl Karossen:</label>
-              <input type="number" id="calcTotalCars" value="16">
+              <input type="number" id="calcTotalCars" value="14">
             </div>
           </div>
 
@@ -515,6 +619,11 @@ docker exec -it paternoster-cms npm run strapi import -- --force --file /opt/app
                 <td><strong>Kiosk stellt alte CMS-IP dar</strong></td>
                 <td>`databaseIP` in `settings.json` editiert, aber Vue-App nicht neu kompiliert.</td>
                 <td>Vue-Image neu bauen (`docker compose build app-vue`), da die IP beim Build fest in das Frontend eingebrannt wird.</td>
+              </tr>
+              <tr>
+                <td><strong>Strapi Adminpanel nicht erreichbar</strong></td>
+                <td>Container `paternoster-cms` gestoppt oder Port 1337 blockiert.</td>
+                <td>`docker compose logs paternoster-cms` prüfen und Container neustarten (`docker compose restart paternoster-cms`).</td>
               </tr>
               <tr>
                 <td><strong>MQTT-Verbindung schlägt fehl</strong></td>
