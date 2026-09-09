@@ -1,9 +1,10 @@
-.git
-.gitignore
-.dockerignore
-paternoster/
-museum_3-3Motor/
-horchv8/
-audi100_geheimprojekt/
-*.tar
-*.gz
+# Ignore everything by default for instant build context
+*
+
+# Include only static wiki assets
+!index.html
+!styles.css
+!app.js
+!WIKI.md
+!README.md
+!Dockerfile
