@@ -15,12 +15,12 @@ Zentrales Repository für das technische Wiki der digitalen Ausstellungsstücke 
 ```bash
 docker compose up -d --build
 ```
-Das Wiki ist anschließend erreichbar unter: `http://localhost:8080`
+Das Wiki ist anschließend erreichbar unter: `http://localhost:8085`
 
 ### 2. Ausführung via Pure Docker CLI
 ```bash
 docker build -t museumswiki:latest .
-docker run -d --name museumswiki -p 8080:80 --restart unless-stopped museumswiki:latest
+docker run -d --name museumswiki -p 8085:80 --restart unless-stopped museumswiki:latest
 ```
 
 ## 🚗 Dokumentierte Exponat-Repositories

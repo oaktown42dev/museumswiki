@@ -7,4 +7,4 @@ services:
     container_name: museumswiki
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8085:80"
